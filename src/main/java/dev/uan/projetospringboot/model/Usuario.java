@@ -1,6 +1,8 @@
 package dev.uan.projetospringboot.model;
 
+import dev.uan.projetospringboot.dto.UsuarioDTO;
 import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Objects;
 
@@ -23,6 +25,12 @@ public class Usuario {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    public Usuario(UsuarioDTO usuarioDTO) {
+        BeanUtils.copyProperties(usuarioDTO, this);
+    }
+
+    public Usuario() {}
 
     public Long getId() {
         return id;
